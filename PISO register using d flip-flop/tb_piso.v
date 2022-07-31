@@ -1,0 +1,21 @@
+`timescale 1ns / 1ps
+module tb_piso();
+reg clk,sl;
+reg [3:0]d;
+wire q;
+pisoD d1(d, clk, sl, q);
+initial
+begin
+clk=1'b0;
+forever #5 clk=~clk;
+end
+initial
+begin
+sl=0;d=4'b1011;
+#10 sl=1;
+#10 sl=1;
+#10 sl=1;
+#10 sl=0;d=4'b0000;
+#100 $finish;
+end 
+endmodule
